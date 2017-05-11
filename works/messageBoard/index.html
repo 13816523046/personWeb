@@ -1,0 +1,196 @@
+<html>
+<head>
+	<title>留言板</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+
+	<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$(document).on("mousedown",function(e){
+//				        e.preventDefault();
+						var cx= e.offsetX;
+						var cy= e.offsetY;
+						var obj= e.target;
+				  $(document).on("mousemove",function(e){
+					    e.preventDefault();
+					    var px= e.pageX;
+					  	var py= e.pageY;
+					    $(obj).trigger("drag",{left:px-cx,top:py-cy})
+
+				  })
+				 $(document).on("mouseup",function(){
+					  $(document).off("mouseup");//???
+					  $(document).off("mousemove");
+
+				 })
+			})
+//			输入框动画
+			var btn=$(".add");
+			var flag=true;
+			btn.click(function(){
+				if(flag){
+					$("form").attr("data-role","animate-down").css("display","block");
+					flag=false;
+				}else{
+					$("form").attr("data-role","animate-up");
+					flag=true;
+				}
+			})
+
+			$(".formclose").click(function(){
+				$("form").attr("data-role","animate-up");
+			})
+
+			$(".submit").click(function(){
+
+				var btval=$("#bt").val();
+				var textval=$("#text").val();
+				var timeval=$("#time").val();
+				if(btval==""){
+					alert("标题不能为空");
+					return false;
+				}
+				if(textval==""){
+					alert("内容不能为空");
+					return false;
+				}
+				if(timeval==""){
+					alert("请选择时间");
+					return false;
+				}
+
+				var oldv=localStorage.message==null?[]:JSON.parse(localStorage.message);
+				var obj={bt:btval,text:textval,time:timeval};
+				oldv.push(obj);
+
+				var str=JSON.stringify(oldv);
+				localStorage.message=str;
+				$("#bt").val("");
+				$("#text").val("");
+				$("#time").val("");
+
+				//页面加载显示已经保存的内容
+				var clone=$(".content").first().clone().appendTo($(".content-box")).fadeIn(100).css({
+					 left:($(window).width()-$(".content").outerWidth())*Math.random(),
+					 top:($(window).height()-$(".content").outerHeight())*Math.random()
+				});
+
+				clone.find($(".panel-body")).eq(0).html(btval);
+				clone.find($(".panel-body")).eq(1).html(textval);
+				clone.find($(".panel-body")).eq(2).html(timeval);
+
+
+				$(".conclose").click(function(){
+					var parent=$(this).parent();
+					var num=parent.index()-2;
+					parent.hide();
+					oldv.splice(num,1);
+					console.log(num)
+					localStorage.message=JSON.stringify(oldv);
+
+				})
+
+			})//点击事件结束
+
+
+
+			var message=localStorage.message==null?[]:JSON.parse(localStorage.message);
+			for(var i=0;i<message.length;i++){
+				var clone=$(".content").first().clone().appendTo($(".content-box")).fadeIn(100).css({
+					left:($(window).width()-$(".content").outerWidth())*Math.random(),
+					top:($(window).height()-$(".content").outerHeight())*Math.random()
+				});
+				clone.find($(".panel-body")).eq(0).html(message[i].bt);
+				clone.find($(".panel-body")).eq(1).html(message[i].text);
+				clone.find($(".panel-body")).eq(2).html(message[i].time);
+
+			}
+
+
+			//拖拽
+			$(document).delegate(".content","drag",function(e,data){
+				  $(this).css({
+					  left:data.left,
+					  top:data.top,
+				  })
+			})
+			$(document).delegate(".content","mousedown",function(){
+				 $(this).css({
+					  zIndex:5
+				 })
+				$(".content").css({
+					 zIndex:0
+				})
+			})
+
+			$(".conclose").click(function(){
+				 var parent=$(this).parent();
+				 var num=parent.index()-2;
+				parent.hide();
+				message.splice(num,1);
+				console.log(num)
+				localStorage.message=JSON.stringify(message);
+
+			})
+
+
+		})
+	</script>
+</head>
+<body>
+<div class="out">
+<!--<div class="box">-->
+<div class="menu">
+	留言板
+   <div class="add">留言</div>
+</div>
+
+
+	<form class="form" style="display:none;background:#fff;border-radius:10px">
+		<button type="button" class="close formclose" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<div class="form-group">
+			<label for="bt">标题:</label>
+			<input type="text" class="form-control" id="bt" placeholder="请输入标题">
+		</div>
+
+		<div class="form-group">
+			<label for="text">内容:</label>
+			<textarea class="form-control" rows="2" id="text"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="time">时间:</label>
+			<input type="date" name="user_date" class="form-control" id="time"/>
+		</div>
+
+		<button type="button" class="btn btn-default submit">Submit</button>
+	</form>
+
+	<div class="content-box">
+		<div class="panel panel-info content">
+			<button type="button" class="close conclose" aria-label="Close" style="width:20px;"><span aria-hidden="true">&times;</span></button>
+			<div class="panel-heading">标题</div>
+			<div class="panel-body">
+				me
+			</div>
+			<div class="panel-heading">内容</div>
+			<div class="panel-body" style="overflow-y:scroll">
+				我的家
+				我的家
+				我的家
+				我的家
+				我的家
+			</div>
+			<div class="panel-heading">时间</div>
+			<div class="panel-body">
+				2015
+			</div>
+		</div>
+	</div>	  
+</div>
+<!--</div>-->
+</body>
+</html>

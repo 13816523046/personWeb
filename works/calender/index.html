@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>日历</title>
+	<script type="text/javascript" src="jquery-1.11.3.js"></script>
+	<script>
+	    $(function(){
+
+     	var date=new Date();
+     	var h=date.getDate();
+     	var x=date.getDay();
+     	var m=date.getMonth();
+     	var n=date.getFullYear();
+
+     	$(".year").html(n+"年-"+(m+1)+"月");
+     	$(".right").html(n+"年-"+(m+1)+"月"+h+"日");
+
+		function obj(){
+				$(".year").html(n+"年-"+(m+1)+"月");
+     		    $(".right").html(n+"年-"+(m+1)+"月"+h+"日");
+
+		     	if(m==0||m==2||m==4||m==6||m==7||m==9||m==11){
+		     	     var tian=31;
+		     	}else{
+		     		if(m==1&&n%4==0){
+		     			tian=29;
+		     		}else if(m==1&&n%4!=0){
+		     			tian=28;
+		     		}else{
+		     			tian=30;
+		     		}
+		     	}
+
+		     	var onedate=new Date(2016,m,1,12,0,0);
+		     	var xx=onedate.getDay();
+		     	var str="";
+		     	for (var i = 0; i < xx; i++) {
+		     		str+="<a href='javascript:;' id='kong'></a>";
+		     	};
+		     	for (var i = 0; i <tian; i++) {
+		     		str+="<a href='javascript:;' odate='"+n+"年"+(m+1)+"月"+(i+1)+"日'>"+(i+1)+"</a>";
+
+		     	};
+
+
+		     	$(".content").html(str);
+		     	$(".top li").removeClass("hot");
+		     	$(".top li").eq(x).addClass("hot");
+		     	$(".content a").eq(h-1+xx).addClass("hot");
+
+		     	$(".content a[odate]").click(function(){
+						 var xriqi=$(this).attr("odate");
+		                 $(".right").html(xriqi);
+		        })
+
+		}
+
+
+     	 obj();
+     	 
+
+		$(".aleft").click(function(){
+     		 m--;
+     		 if(m<0){
+     		 	n--;
+     		 	m=11;
+     		 }
+     		 obj();
+     	})
+
+     	$(".aright").click(function(){
+     		 m++;
+     		 if(m>11){
+     		 	n++;
+     		 	m=0;
+     		 }
+     		 obj();
+     	})
+
+		$(document).click(function(e){
+            e.stopPropagation();
+		})
+
+     })
+
+	</script>
+</head>
+<style>
+body{
+	background:#eee;
+}
+ul,li,a{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+
+	.out{
+		width:600px;
+		height:600px;
+    	position:fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto auto;	
+		background:url(rl.png) no-repeat center center;
+		background-size: cover;
+	}
+	.box{
+		position: absolute;
+		top:100px;
+		left:100px;
+		width:400px;
+		height:450px;
+
+	}
+	.topp{
+		width:400px;
+		height:50px;
+		line-height: 50px;
+		text-align: center; 
+		font-weight: bold;
+	}
+	.top{
+		width:380px;
+		height: 45px;
+		padding-left: 20px;
+	}
+	.top li{
+		width:45px;
+		height:100%;
+		background:#000;
+		border-radius: 10px;
+		float: left;
+		margin-left:6px; 
+		text-align: center;
+		line-height:50px;
+		color:#fff; 
+	}
+	.top .hot,.content .hot{
+		background:#00ce53; 
+	}
+	.top li a,.content a{
+		color: #fff;
+	}
+	.content{
+		width:400px;
+		height:350px;
+		margin-left:20px;
+	}
+	.content a{
+		display: block;
+		width:45px;
+		height:45px;
+		border-radius: 10px;
+		background:pink; 
+		float: left;
+		margin-left:6px;
+		margin-top:4px;  
+		text-align: center;
+		line-height:50px;
+	}	
+	.content a:hover{
+		background:#fff; 
+		color: #333;
+	}
+	#kong{
+		background: #ccc;
+		opacity: 0;
+	}
+	.left{
+		float: left;
+
+	}
+	.left a{
+		color:#000;
+	}
+	.right{
+		width: 120px;
+		text-align: center;
+		float: right;
+	}
+	.year{
+		display: inline-block;
+		width:100px; 
+	}
+</style>
+<body>
+  <div class="out">
+	<div class="box">
+	    <div class="topp">
+	        <div class="left">
+	        	<a href="javascript:;" class="aleft">&lt;</a>
+	        	<span class="year"></span>
+	        	<a href="javascript:;" class="aright">&gt;</a>
+	        </div>
+			<span>日历</span>
+			<div class="right"></div>
+	    </div>
+		<ul class="top">
+		    <li><a href="">日</a></li>
+			<li><a href="">一</a></li>
+			<li><a href="">二</a></li>
+			<li><a href="">三</a></li>
+			<li><a href="">四</a></li>
+			<li><a href="">五</a></li>
+			<li><a href="">六</a></li>
+		</ul>
+		<div class="content"></div>
+	</div>
+</div>
+</body>
+</html>

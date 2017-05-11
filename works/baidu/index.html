@@ -1,0 +1,90 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	
+	<script type="text/javascript">
+	window.onload=function(){
+		var input=document.getElementsByTagName('input')[0];
+		var list=document.getElementsByClassName('list')[0];
+		var search=document.getElementsByClassName('search')[0];
+		var searchA=document.getElementById('search-a');
+		//alert(searchA)
+		var keywords='';
+		input.focus();
+		input.onkeyup=function(){
+			 keywords=this.value;
+			var urls="https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+keywords+"&json=1&p=3";
+			ajax({
+				url:urls,
+				dataType:"jsonp",
+				jsonpCallback:{cb:'?'},
+				success:function(data){
+					console.log(data)
+					var str='';
+					for(var i in data.s){
+						str+="<li><a href=https://www.baidu.com/s?wd="+data.s[i]+"&rsv_spt=1&rsv_iqid=0xc3fdfaad00025839&issp=1&f=3&rsv_bp=0&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_sug3=2&rsv_sug1=1&rsv_sug2=1&prefixsug=a&rsp=0&inputT=1579&rsv_sug4=2041>"+data.s[i]+"</a></li>"
+					}
+					list.innerHTML=str;
+				}
+			})
+		}
+		search.onclick=function(){
+			if (keywords) {
+				searchA.href="https://www.baidu.com/s?wd="+keywords+"&rsv_spt=1&rsv_iqid=0xc3fdfaad00025839&issp=1&f=3&rsv_bp=0&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_sug3=2&rsv_sug1=1&rsv_sug2=1&prefixsug=a&rsp=0&inputT=1579&rsv_sug4=2041"
+			};
+		}
+	}
+	</script>
+	<script type="text/javascript" src="ajax.js"></script>
+	<style type="text/css">
+	body,ul,li{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	#box{
+		width: 700px;height: 40px;
+		background-color: #eef;
+		margin: 0 auto;margin-bottom: 0;
+	}
+	#inpt{
+		width: 600px;height: 40px;display: block;float: left;
+		border: 1px solid #bbb;outline: none;text-indent: 15px;
+	}
+	.logo{
+		margin: 150px auto;margin-bottom: 30px;
+		width: 200px;height: 65px;
+	}
+	.logo img{
+		width: 200px;
+	}
+	.search{
+		width: 100px;height: 40px;float: left;
+		background-color: #398bfb;color:#fff;
+		line-height: 40px;text-align: center;cursor: pointer;
+	}
+	.list{
+		width: 698px;height:auto;border: 1px solid #bbb;
+		margin: 0 auto;border-top: none;border-bottom: none;
+	}
+	.list li{
+		height: 30px;line-height: 30px;font-size: 14px;
+		border-bottom: 1px dashed #ccc;text-indent: 10px;
+	}
+	.list li a{
+		color: #333;
+		text-decoration: none;
+	}
+	</style>
+</head>
+<body>
+	<a href=""><div class="logo"><img src="logo.png"></div></a>
+	<div id="box">
+		<input type="text" id="inpt">
+		<a id="search-a" href="" ><div class="search">百度一下</div></a>
+	</div>
+	<ul class="list">
+	</ul>
+</body>
+</html>

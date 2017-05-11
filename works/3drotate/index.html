@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./js/jquery.js"></script>
+    <script>
+        $(function(){
+            var cx=$(".a").offset().left+$(".a").width()/2;
+            var cy=$(".a").offset().top+$(".a").height()/2;
+            $(document).mousemove(function(e){
+                var px= e.pageX-cx;
+                var py= e.pageY-cy;
+                var pz=0;
+
+                var m=Math.sqrt(px*px+py*py+pz*pz);
+
+                var mx=px/m;
+                var my=py/m;
+                var mz=pz/m;
+
+                $(".a").css({
+                    transform:"rotate3d("+mx+","+my+","+mz+","+m+"deg)"
+                })
+            })
+        })
+    </script>
+    <style>
+        body,ul,li{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body{
+            perspective:300px;
+            /*图像距离我们视角的距离(设置在场景上(转换物体的前辈元素))*/
+            /*perspective-origin:0 0;*/
+            /*在什么地方观察物体*/
+            width:100%;
+            height:100%;
+            background:radial-gradient(#c0238f,#71165e);
+        }
+        .screen{
+            perspective:1000px;
+            width:200px;
+            height:200px;
+            padding:200px;
+            margin: auto;
+        }
+        .a{
+            width:200px ;
+            height:200px;
+            position: relative;
+            transform-style: preserve-3d;
+            /*transition:transform 2s ease;*/
+            transform-origin:center center 100px;
+            /*绕中心旋转*/
+        }
+        .a:hover{
+            transform:rotate3d(0,1,0,360deg);
+        }
+        .a>div{
+            width:100%;
+            height:100%;
+            position:absolute;
+            left: 0;
+            top:0;
+        }
+        .a>div:nth-child(1){
+            background:url("5.jpg");
+            transform: rotateY(90deg);
+            transform-origin:right;
+        }
+        .a>div:nth-child(2){
+            background:url("4.jpg");
+            transform: rotateY(-90deg);
+            transform-origin:left;
+        }
+        .a>div:nth-child(3){
+            background:url("6.jpg");
+            transform: rotateY(180deg);
+        }
+        .a>div:nth-child(4){
+            background:url("3.jpg");
+            transform: rotateX(90deg);
+            transform-origin:top;
+        }
+        .a>div:nth-child(5){
+            background:url("2.jpg");
+            transform: rotateX(-90deg);
+            transform-origin:bottom;
+        }
+        .a>div:nth-child(6){
+            background:url("1.jpg");
+            transform:translateZ(200px);
+
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="screen">
+        <div class="a">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</body>
+</html>

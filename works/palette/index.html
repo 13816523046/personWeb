@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>画布</title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/canvas.css"/>
+    <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="js/canvas.js"></script>
+    <script type="text/javascript" src="js/shape.js"></script>
+
+</head>
+<body>
+<div class="conbox">
+    <ul class="menu">
+        <li class="parent">
+            <div class="list"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></div>
+            <ul class="son">
+                <li>新建</li>
+                <li>保存</li>
+            </ul>
+        </li>
+        <li class="parent">
+            <div class="list"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></div>
+            <ul class="son">
+                <li data-role="line">线</li>
+                <li data-role="circal">圆</li>
+                <li data-role="rect">矩形</li>
+                <li data-role="pen">铅笔</li>
+                <li data-role="five">五角星</li>
+            </ul>
+        </li>
+        <li class="parent">
+            <div class="list"><span class="glyphicon glyphicon-object-align-bottom" aria-hidden="true"></span></div>
+            <ul class="son">
+                <li data-role="stroke">划线</li>
+                <li data-role="fill">填充</li>
+            </ul>
+        </li>
+        <li class="parent">
+            <div class="list"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span></div>
+            <ul class="son">
+                <li>
+                    <input type="color"/>
+                </li>
+            </ul>
+        </li>
+        <li class="parent">
+            <div class="list"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span></div>
+            <ul class="son">
+                <li>
+                    <input type="color"/>
+                </li>
+
+            </ul>
+        </li>
+        <li class="parent">
+            <div class="list"><span class="glyphicon glyphicon-bold" aria-hidden="true"></span></div>
+            <ul class="son">
+                <li data-role=1>细</li>
+                <li data-role=2>中</li>
+                <li data-role=6>粗</li>
+            </ul>
+        </li>
+        <li class="parent xp2">
+            <div class="list"><span class="glyphicon glyphicon-erase" aria-hidden="true"></span></div>
+            <ul class="son">
+                <li data-role="10">小</li>
+                <li data-role="20">中</li>
+                <li data-role="30">大</li>
+            </ul>
+        </li>
+
+    </ul>
+    <div class="before">后退</div>
+    <div class="select">选择</div>
+    <div class="box">
+        <div class="copy"></div>
+        <canvas width="800" height="560"></canvas>
+        <div class="xp"></div>
+        <div class="selectarea"></div>
+    </div>
+</div>
+</body>
+</html>

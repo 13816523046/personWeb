@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>漂浮窗</title>
+	<script type="text/javascript" src="./js/function.js"></script>
+    <script type="text/javascript" src="./js/animate.js"></script>
+    <script type="text/javascript">
+           $(function(){
+
+           	 var box=$(".box")[0];
+             var close=$(".closebox")[0];
+
+             floatWindow(box,close,15,15);
+           	 function floatWindow(obj,close,sheepX,sheepY){
+                 var sheepX=sheepX||10;
+           	     var sheepY=sheepY||10;
+           	     var wwidth=document.documentElement.clientWidth;
+           	     var wheight=document.documentElement.clientHeight;
+           	     var swidth=obj.offsetWidth;
+           	     var sheight=obj.offsetHeight;
+           	     //window.onload; 文档加载完成事件
+           	     //window.onscroll  窗口滚动条事件
+           	     //window.onresize  窗口改变事件
+           	     window.onresize=function(){
+                      wwidth=document.documentElement.clientWidth;
+           	          wheight=document.documentElement.clientHeight;
+           	     }
+                 close.onclick=function(){
+                      box.style.display="none";
+                 }
+           	     var t=setInterval(move,50);
+           	     function move(){
+                     var selfleft=obj.offsetLeft;
+                     var selftop=obj.offsetTop;
+                     var newleft=selfleft+sheepX;
+                     var newtop=selftop+sheepY;
+                     if(newtop>=wheight-sheight){
+                     	  sheepY*=-1;
+                     	  newtop=wheight-sheight;
+                     }
+                     if(newleft>=wwidth-swidth){
+                     	  sheepX*=-1;
+                     	  newleft=wwidth-swidth;
+                     }
+                     if(newtop<=0){
+                     	  sheepY*=-1;
+                     	  newtop=0;
+                     }
+                     if(newleft<=0){
+                     	  sheepX*=-1;
+                     	  newleft=0;
+                     }
+                     obj.style.left=newleft+"px";
+                     obj.style.top=newtop+"px";
+           	     }
+           	    obj.onmouseover=function(){
+           	    	 clearInterval(t);
+           	    } 
+           	    obj.onmouseout=function(){
+           	    	 t=setInterval(move,50);
+           	    }
+
+
+           	}
+
+           })
+
+
+
+
+    </script>
+    <style>
+	    body{
+	    	margin:0;
+        padding:0;
+        overflow: hidden;        
+	    }
+      .out{
+         width:1400px;
+         height:850px;
+         background: url(./images/bg2.jpg) no-repeat;
+         background-size:cover;
+
+      }
+        .box{
+        	width:394px;
+        	height:211px;
+        	background:blue;
+        	cursor: pointer;
+        	position: absolute;
+        	left: 0;
+        	top: 0;
+          background:url("./images/box.jpg");
+        }
+        .closebox{
+        	width:10px;
+        	height:10px;
+        	line-height: 10px;
+        	text-align: center;
+        	border: 1px solid #333;
+        	float: right;
+        	margin-top: 10px;
+        	margin-right: 10px;
+          font-size: 12px; 
+        }
+    </style>
+</head>
+<body>
+<div class="out">
+	<div class="box">
+		<div class="closebox">x</div>
+	</div>
+</div>
+</body>
+</html>

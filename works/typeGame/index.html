@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dazigame</title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <script src="js/jquery-production%201.11.3.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/index.js"></script>
+
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            background:url(images/bj.jpg) no-repeat;
+            background-size: cover;
+            overflow: hidden;
+        }
+        *{
+            font-family: "微软雅黑";
+        }
+        .fs{
+            width:200px;
+            height:200px;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 200px;
+            position:fixed;
+            top:200px;right:0;
+            background:url("images/yun.png") center center;
+            z-index: 100;
+            background-size:cover;
+        }
+        .sm{
+            width:200px;
+            height:200px;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 200px;
+            position:fixed;
+            top:100px;right: 0;
+            background:url("images/yun.png") center center;
+            z-index: 100;
+            background-size:cover;
+        }
+        .start{
+            width:400px;height:380px;
+            background: url("images/start.png") no-repeat;
+            position:fixed;left: 0;top:0;right: 0;margin:0 auto;
+            z-index:400;
+            display:none;
+            color: #fff;
+        }
+        .button{
+            width:200px;
+            height:120px;
+            position: absolute;
+            top:130px;
+            left: 100px;
+        }
+        /*.xz{*/
+            /*position: absolute;*/
+            /*top:200px;*/
+            /*left:200px;*/
+        /*}*/
+        .fail{
+            width:300px;height:300px;
+            position: fixed;left: 0;top: 0;right: 0;bottom: 0;margin: auto auto;
+            background:url("images/score.png") no-repeat center center;
+            background-size:100%;
+            display: none;
+            z-index:400;
+        }
+        .score2{
+            width: 100px;height:25px;
+            position:absolute;bottom:110px;left:120px;
+            font-size:25px;color:#fff;font-weight:600
+        }
+        #again{
+            display:block;
+            width:75px;height:30px;
+            position: absolute;bottom:60px;left:110px;
+        }
+
+
+        .next{
+            width: 300px;height: 300px;
+            position: fixed;left: 0;top: 0;right: 0;bottom: 0;margin: auto auto;
+            background: url("images/next.png") no-repeat center center;
+            background-size:100%;
+            display: none;
+            z-index: 400;
+        }
+        .mes{
+            width:20px;height:25px;
+            position: absolute;top:130px;left:135px;
+            font-size:25px;color: #fff;
+            font-weight: 600;
+        }
+        #go{
+            display: block;
+            width: 75px;height: 25px;text-decoration: none;color:#000;
+            position: absolute;bottom:80px;left:110px;
+        }
+    </style>
+</head>
+<body>
+<div class="fs">
+    <div class="score"><span>得分：</span><span>0</span></div>
+</div>
+<div class="sm">
+    <div class="die"><span>生命：</span><span>10</span></div>
+</div>
+<div class="start">
+    <div class="button"></div>
+    <!--<div class="xz">-->
+        <!--请选择关卡：<select class="form-control" style="width:100px;">-->
+        <!--<option>1</option>-->
+        <!--<option>2</option>-->
+        <!--<option>3</option>-->
+        <!--<option>4</option>-->
+        <!--<option>5</option>-->
+        <!--<option>6</option>-->
+        <!--<option>7</option>-->
+        <!--<option>8</option>-->
+    <!--</select>-->
+    <!--</div>-->
+
+</div>
+<div class="fail">
+    <div class="score2">
+         &nbsp;&nbsp;&nbsp;&nbsp;<span id="score"></span>&nbsp;&nbsp;分
+    </div>
+    <a href="javascript:;" id="again"></a>
+</div>
+<div class="next">
+    <div class="mes">
+       <span id="step"></span>
+    </div>
+    <a href="javascript:;" id="go"></a>
+</div>
+</body>
+</html>

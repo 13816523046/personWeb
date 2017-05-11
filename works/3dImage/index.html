@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./js/jquery.js"></script>
+    <script>
+        $(function(){
+            var bigscre=$("<div>");
+            bigscre.css({
+                width:800,
+                height:400,
+                position:"fixed",top:0,left:0,bottom:0,right:0,margin:"auto"
+            }).appendTo($("body"));
+            var num=10;
+            var arr=[];
+            for(var i=0;i<num;i++){
+                if(i==0){
+                    var a=300;
+                }else if(i==1){
+                    var a=200;
+                }else if(i==2){
+                    var a=100;
+                }else if(i==3){
+                    var a=0;
+                }
+                var scre=$("<div>");
+                scre.css({
+                    width:"100%",
+                    height:100/num+"%",
+                    //perspective:"9000px",
+                    perspectiveOrigin:"center "+a+"px"//把焦点放到中点
+                }).appendTo(bigscre);
+                var box=$("<div>");
+                var t=i*0.2;
+                box.css({
+                    width:"100%",
+                    height:"100%",
+                    position:"relative",
+                    transformStyle:"preserve-3d",
+                    transition:"transform 1s linear "+t+"s",//???????
+                    transformOrigin:"center center 200px"//?????
+                }).appendTo(scre);
+                arr.push(box);
+                for(var j=0;j<6;j++){
+                    var panel=$("<div>");
+                    panel.css({
+                        position:"absolute",
+                        left:0,
+                        top:0
+                    }).appendTo(box);
+                    if(j==0){
+                        panel.css({
+                            width:"100%",
+                            height:"400px",
+                            transform:"rotateX(90deg)",
+                            transformOrigin:"top"
+                        })
+                    }else if(j==1){//宽400,高400
+                        panel.css({
+                            width:"400px",
+                            height:"100%",
+                            transform:"rotateY(-90deg)",
+                            transformOrigin:"left",
+                            background:"url('images/d2.jpg') no-repeat 0 "+(-i*40)+"px"
+                        })
+                    }else if(j==2){//800 400
+                        panel.css({
+                            width:"100%",
+                            height:"100%",
+                            transform:"rotateY(180deg)",
+                            transformOrigin:"center",
+                            background:"url('images/c2.jpg') no-repeat 0 "+(-i*40)+"px"
+                        })
+                    }else if(j==3){//400 400
+                        panel.css({
+                            width:"400px",
+                            height:"100%",
+                            left:"400px",
+                            transform:"rotateY(90deg)",
+                            transformOrigin:"right",
+                            background:"url('images/d1.jpg') no-repeat 0 "+(-i*40)+"px"
+                        })
+                    }else if(j==4){
+                        panel.css({
+                            width:"100%",
+                            height:"400px",
+                            bottom:0,
+                            transform:"rotateX(-90deg)",
+                            transformOrigin:"bottom",
+
+                        })
+                    }else if(j==5){//800 400
+                        panel.css({
+                            width:"100%",
+                            height:"100%",
+                            transform:"translateZ(400px)",
+                            background:"url('images/c1.jpg') no-repeat 0 "+(-i*40)+"px"
+                        })
+                    }
+                }
+            }
+
+            window.onblur=function(){
+                clearInterval(t);
+            }
+            window.onfocus=function(){
+                t=setInterval(move,3000);
+            }
+            var a=0;
+            var t=setInterval(move,3000);
+            function move(){
+                a+=90;//浏览器缩小，还一直在运行
+                for(var i=0;i<arr.length;i++){
+                    arr[i].css({
+                        transform:"rotateY("+a+"deg)",
+                    })
+                }
+            }
+        })
+    </script>
+    <style>
+        body,ul,li{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+    </style>
+</head>
+<body>
+</body>
+</html>
