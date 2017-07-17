@@ -5,7 +5,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     // 入口文件，path.resolve()方法，可以结合我们给定的两个参数最后生成绝对路径，最终指向的就是我们的index.js文件
-    entry: path.resolve(__dirname, 'index.html'),
+    entry: path.resolve(__dirname, 'index.js'),
     // 输出配置
     output: {
         path: path.join(__dirname, "build/"),
@@ -49,6 +49,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.resolve(__dirname, 'index.html'),
+            inject: true
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'work.html',
+            template: path.resolve(__dirname, 'work.html'),
             inject: true
         }),
         new ExtractTextPlugin("[name].css"),

@@ -2,7 +2,7 @@
   "name": "personweb",
   "version": "1.0.0",
   "description": "李艳芳的个人网站",
-  "main": "index.html",
+  "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --inline",
     "build": "webpack"

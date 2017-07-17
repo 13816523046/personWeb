@@ -60,7 +60,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1e572afac571f0c4534e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c22df24e2523e69f1c0f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -710,14 +710,21 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!********************!*\
-  !*** ./index.html ***!
-  \********************/
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
 /*! no static exports found */
 /*! all exports used */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module parse failed: /Users/yanfang.li/Desktop/personWeb/index.html Unexpected token (1:0)\nYou may need an appropriate loader to handle this file type.\n| <html>\r\n| <head>\r\n| \t<title>个人网站</title>\r");
+"use strict";
+
+
+__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"js/animate.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"js/function.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"js/jquery-1.11.3.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"js/animate.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"js/index.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 /***/ })
 /******/ ]);
