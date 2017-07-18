@@ -60,7 +60,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c22df24e2523e69f1c0f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "6b43ff63f4751775b98b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -710,9 +710,9 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!******************!*\
-  !*** ./index.js ***!
-  \******************/
+/*!********************!*\
+  !*** ./js/work.js ***!
+  \********************/
 /*! no static exports found */
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
@@ -720,11 +720,57 @@
 "use strict";
 
 
-__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"js/animate.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"js/function.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"js/jquery-1.11.3.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"js/animate.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"js/index.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+$(function () {
+    $(".box").each(function (i) {
+        $(this).hover(function () {
+            $(".ap>span").eq(i).stop(true).animate({ width: 100 }, 300);
+        }, function () {
+            $(".ap>span").eq(i).stop(true).animate({ width: 0 }, 300);
+        });
+    });
+
+    var colorarr = ["#33302b", "deeppink", "#AB1E81", "#4CB748", "#000", "brown", "#4CB748", "deeppink", "#33302b", "#AB1E81"];
+    var imgUrl = ["images/000.png", "images/555.png", "images/333.png", "images/111.png", "images/liantu.png", "images/baidu.png", "images/222.png", "images/444.png", "images/666.png", "images/777.png"];
+    $(".td").each(function (i) {
+        $(this).css("background", colorarr[i]);
+    });
+    $(".tu").each(function (i) {
+        $(this).css({
+            background: "url('" + imgUrl[i] + "')",
+            backgroundSize: "cover"
+        });
+    });
+
+    var ch = $(window).height();
+
+    var pbox = $(".box");
+
+    var sct = $("body").scrollTop();
+
+    for (var i = 0; i < pbox.length; i++) {
+        var aa = pbox[i].offsetTop;
+        if (sct + ch / 2 > aa) {
+            $(pbox[i]).css({
+                transform: "scale(1,1)"
+            });
+            $(pbox[i]).animate({ opacity: 1 }, 1000);
+        }
+    }
+
+    $(window).scroll(function () {
+        var sct = $("body").scrollTop();
+
+        for (var i = 0; i < pbox.length; i++) {
+            var aa = pbox[i].offsetTop;
+            if (sct + ch / 2 > aa) {
+                $(pbox[i]).css({
+                    transform: "scale(1,1)"
+                });
+                $(pbox[i]).animate({ opacity: 1 }, 1000);
+            }
+        }
+    });
+});
 
 /***/ })
 /******/ ]);
